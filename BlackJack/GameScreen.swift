@@ -5,7 +5,8 @@
 //  Created by Haider Malik on 2024-03-14.
 //
 // update 2024-03-15: completed UI placment
-// TODO: change the svg icons (only for buttons), integrate svgs as buttons
+// update 2024-03-16 change the svg icons (only for buttons) integrated svgs as buttons
+// TODO: start working on game logic (blueprint in python)
 
 import SwiftUI
 
@@ -17,10 +18,11 @@ struct GameScreen: View {
                 .ignoresSafeArea()
             VStack{
                 Spacer()
-                Image("deal")
-                    .resizable()
-                    .frame(width: 300, height: 120)
-                    .cornerRadius(20)
+                Button(){
+                    print("deal done")
+                } label: {
+                    Image("deal")
+                }
                 Spacer()
                 HStack{
                     Spacer()
@@ -40,24 +42,21 @@ struct GameScreen: View {
                 Spacer()
                 HStack{
                     Spacer()
-                    Image("hit")
-                        .resizable()
-                        .frame(width: 100, height: 40)
-                        .cornerRadius(20)
+                    Button(){
+                        print("Hit done")
+                    } label: {
+                        Image("hit")
+                    }
                     Spacer()
-                    Image("stop")
-                        .resizable()
-                        .frame(width: 100, height: 40)
-                        .cornerRadius(20)
-                    Spacer()
-                    Image("doubledown")
-                        .resizable()
-                        .frame(width: 100, height: 40)
-                        .cornerRadius(20)
+                    Button(){
+                        print("stop done")
+                    } label: {
+                        Image("stop")
+                    }
                     Spacer()
                         
                 }
-                Spacer()
+               
             }
         }
     }
