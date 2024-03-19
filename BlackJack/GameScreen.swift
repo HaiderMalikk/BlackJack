@@ -6,11 +6,15 @@
 //
 // update 2024-03-15: completed UI placment
 // update 2024-03-16 change the svg icons (only for buttons) integrated svgs as buttons
-// TODO: start working on game logic (blueprint in python)
+// TODO: FIX PYTHON SCRIPT
 
 import SwiftUI
+import PythonKit
+
+
 
 struct GameScreen: View {
+    @State var showResult: Bool = false
     var body: some View {
         ZStack{
             Image("background-plain")
@@ -18,11 +22,16 @@ struct GameScreen: View {
                 .ignoresSafeArea()
             VStack{
                 Spacer()
-                Button(){
-                    print("deal done")
-                } label: {
-                    Image("deal")
+                Button(action: {
+                    RunPythonScript()
+                    showResult.toggle()
+                }) {
+                    Text("RUN PY")
                 }
+                if showResult {
+                    Text(String("\(RunPythonScript())"))
+                }
+                
                 Spacer()
                 HStack{
                     Spacer()

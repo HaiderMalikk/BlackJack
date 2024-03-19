@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import PythonKit
 
 @main
 struct BlackJackApp: App {
     var body: some Scene {
         WindowGroup {
             GameScreen()
+                
         }
     }
 }
