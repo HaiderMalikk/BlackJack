@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import PythonKit
 
 @main
 struct BlackJackApp: App {

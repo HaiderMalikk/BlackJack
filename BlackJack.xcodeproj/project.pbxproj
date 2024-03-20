@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E51A95912BA92E9F005AEA15 /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = E51A95902BA92E9F005AEA15 /* PythonKit */; };
-		E51A95932BA931CA005AEA15 /* BlackJackBackEnd.py in Resources */ = {isa = PBXBuildFile; fileRef = E51A95922BA931CA005AEA15 /* BlackJackBackEnd.py */; };
-		E51A95952BA93492005AEA15 /* RunPythonScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51A95942BA93492005AEA15 /* RunPythonScript.swift */; };
 		E58FEA3A2BA3EA9600F9C412 /* BlackJackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FEA392BA3EA9600F9C412 /* BlackJackApp.swift */; };
 		E58FEA3C2BA3EA9600F9C412 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FEA3B2BA3EA9600F9C412 /* GameScreen.swift */; };
 		E58FEA3E2BA3EA9700F9C412 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E58FEA3D2BA3EA9700F9C412 /* Assets.xcassets */; };
@@ -18,8 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E51A95922BA931CA005AEA15 /* BlackJackBackEnd.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = BlackJackBackEnd.py; sourceTree = "<group>"; };
-		E51A95942BA93492005AEA15 /* RunPythonScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunPythonScript.swift; sourceTree = "<group>"; };
 		E58FEA362BA3EA9600F9C412 /* BlackJack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackJack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E58FEA392BA3EA9600F9C412 /* BlackJackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackJackApp.swift; sourceTree = "<group>"; };
 		E58FEA3B2BA3EA9600F9C412 /* GameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
@@ -61,8 +57,6 @@
 			children = (
 				E58FEA392BA3EA9600F9C412 /* BlackJackApp.swift */,
 				E58FEA3B2BA3EA9600F9C412 /* GameScreen.swift */,
-				E51A95922BA931CA005AEA15 /* BlackJackBackEnd.py */,
-				E51A95942BA93492005AEA15 /* RunPythonScript.swift */,
 				E58FEA492BA3F0F800F9C412 /* ViewController.swift */,
 				E58FEA3D2BA3EA9700F9C412 /* Assets.xcassets */,
 				E58FEA3F2BA3EA9700F9C412 /* Preview Content */,
@@ -144,7 +138,6 @@
 			files = (
 				E58FEA412BA3EA9700F9C412 /* Preview Assets.xcassets in Resources */,
 				E58FEA3E2BA3EA9700F9C412 /* Assets.xcassets in Resources */,
-				E51A95932BA931CA005AEA15 /* BlackJackBackEnd.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +148,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E51A95952BA93492005AEA15 /* RunPythonScript.swift in Sources */,
 				E58FEA3C2BA3EA9600F9C412 /* GameScreen.swift in Sources */,
 				E58FEA3A2BA3EA9600F9C412 /* BlackJackApp.swift in Sources */,
 				E58FEA4A2BA3F0F800F9C412 /* ViewController.swift in Sources */,
