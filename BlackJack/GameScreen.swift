@@ -1,9 +1,6 @@
-// BUGS: after player loses buttons are still there reduce this to just reset
-// BUGS: the ui moves to fast to display cpu cards as player insted cpu last card is displayed fins a proper sleep function to use
-// BUGS: sometimes cpu decides to just stop short it should never stop until it has defeted mt or lost
+// BUGS: the stand and hit button remains after cpu or player loses it disaperes but its still there and you can press it once more before its gone
 
-// TODO format buttons and layer card ontop eachother so aff played cards are viewable with latest card on top
-
+// TODO: ethier make the cards a stack or a scroll ability to scrool through played cards
 
 import SwiftUI
 
@@ -14,8 +11,9 @@ struct GameScreen: View {
     @State private var playerStand = false
     @State private var cpuStand = false
     @State private var initialDealDone = false
-    @State private var currentPlayerCard = "back"
-    @State private var currentCpuCard = "back"
+    @State private var currentPlayerCards: [String] = []
+    @State private var currentCpuCards: [String] = []
+    @State private var gameState = false
     
     var body: some View {
         ZStack{
@@ -34,27 +32,28 @@ struct GameScreen: View {
                 Spacer()
                 HStack{
                     Spacer()
-                    Image(currentCpuCard)
-                    Spacer()
-                    Image(currentCpuCard)
-                    Spacer()
-                }
-                Spacer()
-                HStack{
-                    Spacer()
-                    Image(currentPlayerCard)
-                    Spacer()
-                    Image(currentPlayerCard)
+                    ForEach(currentCpuCards, id: \.self) { card in
+                        Image(card)
+                    }
                     Spacer()
                 }
                 Spacer()
                 HStack{
                     Spacer()
-                    if initialDealDone && !playerStand && !cpuStand {
+                    ForEach(currentPlayerCards, id: \.self) { card in
+                        Image(card)
+                    }
+                    Spacer()
+                }
+                Spacer()
+                HStack{
+                    Spacer()
+                    if initialDealDone && !playerStand && !cpuStand && !gameState {
                         Button("HIT"){
                             hit()
                         }
                         .padding()
+                        .disabled(gameState)
                         Spacer()
                         Button("STAND"){
                             stand()
@@ -77,7 +76,7 @@ struct GameScreen: View {
     func hit() {
         let cardNum = Int.random(in: 2...14)
         let cardName = "card" + String(cardNum)
-        currentPlayerCard = cardName
+        currentPlayerCards.append(cardName)
         
         // Special case for Ace (card number 14)
         if cardNum == 14 {
@@ -97,24 +96,30 @@ struct GameScreen: View {
     
     func stand() {
         playerStand = true
-        while cpucard() == 1 {
+        while cpucard() == 1 && cpuScore < playerScore {
             let cardNum = Int.random(in: 2...14)
             let cardName = "card" + String(cardNum)
-            currentCpuCard = cardName
+            currentCpuCards.append(cardName)
             cpuScore += card_scores[cardNum] ?? 0
             print("CPU dealt a \(cardName). CPU score is \(cpuScore)")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            }
+        }
+        if cpuScore <= playerScore {
+            let cardNum = Int.random(in: 2...14)
+            let cardName = "card" + String(cardNum)
+            currentCpuCards.append(cardName)
+            cpuScore += card_scores[cardNum] ?? 0
+            print("CPU dealt a \(cardName). CPU score is \(cpuScore)")
         }
         cpuStand = true
         checkScore()
     }
+
     
     func initialDeal() {
         let playerCardNum = Int.random(in: 2...14)
         let cpuCardNum = Int.random(in: 2...14)
-        currentPlayerCard = "card" + String(playerCardNum)
-        currentCpuCard = "card" + String(cpuCardNum)
+        currentPlayerCards.append("card" + String(playerCardNum))
+        currentCpuCards.append("card" + String(cpuCardNum))
         playerScore += card_scores[playerCardNum] ?? 0
         cpuScore += card_scores[cpuCardNum] ?? 0
         print("You were dealt a card\(playerCardNum). Your score is \(playerScore)")
@@ -134,30 +139,38 @@ struct GameScreen: View {
             print("You win")
         } else if playerScore > 21 {
             print("You lose")
+            gameState = true
         } else if playerStand && cpuStand {
             if cpuScore == 21 {
                 print("CPU wins")
+                gameState = true
             } else if cpuScore > 21 {
                 print("You win")
+                gameState = true
             } else if playerScore > cpuScore {
                 print("You win")
+                gameState = true
             } else if playerScore < cpuScore {
                 print("CPU wins")
-            } else {
+                gameState = true
+            } else if playerScore == cpuScore && playerScore == 21 {
                 print("It's a tie")
+                gameState = true
             }
         }
     }
-    
+
     func reset() {
         playerScore = 0
         cpuScore = 0
         playerStand = false
         cpuStand = false
         initialDealDone = false
-        currentPlayerCard = "back"
-        currentCpuCard = "back"
+        currentPlayerCards = []
+        currentCpuCards = []
+        gameState = false
     }
+    
     
     let card_scores: [Int: Int] = [2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 11: 10, 12: 10, 13: 10, 14: 11]
 
