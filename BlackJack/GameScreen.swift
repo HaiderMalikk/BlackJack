@@ -1,5 +1,7 @@
 // BUGS: the stand and hit button remains after cpu or player loses it disaperes but its still there and you can press it once more before its gone
 
+// ForEach<Array<String>, String, Image>: the ID card8 occurs multiple times within the collection, this will give undefined results! -> this error is ignored possibly
+
 // TODO: ethier make the cards a stack or a scroll ability to scrool through played cards
 
 import SwiftUI
