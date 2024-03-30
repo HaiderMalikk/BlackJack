@@ -2,7 +2,7 @@
 
 // ForEach<Array<String>, String, Image>: the ID card8 occurs multiple times within the collection, this will give undefined results! -> this error is ignored possibly
 
-// TODO: ethier make the cards a stack or a scroll ability to scrool through played cards
+// TODO: ethier make the cards a stack or a scroll ability to scrool through played cards, get buttons for stand and reset replace the stop with stand
 
 import SwiftUI
 
@@ -25,9 +25,11 @@ struct GameScreen: View {
             VStack{
                 Spacer()
                 if !initialDealDone {
-                    Button("DEAL"){
+                    Button(){
                         initialDealDone = true
                         initialDeal()
+                    } label:{
+                        Image("deal")
                     }
                     .padding()
                 }
@@ -51,8 +53,10 @@ struct GameScreen: View {
                 HStack{
                     Spacer()
                     if initialDealDone && !playerStand && !cpuStand && !gameState {
-                        Button("HIT"){
+                        Button(){
                             hit()
+                        } label: {
+                            Image("hit")
                         }
                         .padding()
                         .disabled(gameState)
