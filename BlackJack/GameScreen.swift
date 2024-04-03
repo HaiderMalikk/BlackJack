@@ -3,7 +3,7 @@
 // ForEach<Array<String>, String, Image>: the ID card8 occurs multiple times within the collection, this will give undefined results! -> this error is ignored possibly
 
 // TODO: ethier make the cards a stack or a scroll ability to scrool through played cards, get buttons for stand and reset replace the stop with stand
-// add python kit backend logic
+// remove python kit dependecy
 
 import SwiftUI
 
